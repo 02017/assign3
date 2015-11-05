@@ -223,7 +223,14 @@ void keyPressed(){
         rightPressed = true;
         break;
     }
-
+   if (fighterX >= 580) 
+       rightPressed = false;
+   if (fighterX <= 20)
+       leftPressed = false;
+   if (fighterY <= 20)
+       upPressed = false;
+   if (fighterY >= 420)
+      downPressed = false;
 }
 
 
