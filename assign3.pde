@@ -15,7 +15,7 @@ PImage enemy2;
 PImage bomb;
 
 int enemyX, enemyY, bloodL, treasureX, treasureY, edge, bg2X, bg2Y, bg1X, bg1Y,start1X,start2X,gameState,end1X,end2X,stop;
-int enemyXL, enemyXR, enemyYU, enemyYD;
+int enemyXL, enemyXR, enemyYU, enemyYD, enemyform;
 int treasureXL, treasureXR, treasureYU, treasureYD;
 //int enemyL=enemyX-280,enemyH=enemyY+200;
 //int a=enemyL/5,b=enemyH/5,c=5;
@@ -58,6 +58,7 @@ void setup () {
   fighterY = 220;
   end1X = 0;
   end2X = 0; 
+  enemyform =1;
 }
 
 void draw() {
@@ -87,30 +88,40 @@ void draw() {
         rect(18,10,18+bloodL,24,5);
         image(hp,5,5);
         
-
+       if (enemyform == 1)       
+         {
          image(enemy,enemyX,enemyY);
          image(enemy,enemyX-70,enemyY);
          image(enemy,enemyX-140,enemyY);
          image(enemy,enemyX-210,enemyY);
          image(enemy,enemyX-280,enemyY);
-   
-            //image(enemy,enemyX,enemyY);
-            //image(enemy,enemyX-70,enemyY+50);
-            //image(enemy,enemyX-140,enemyY+100);
-            //image(enemy,enemyX-210,enemyY+150);
-            //image(enemy,enemyX-280,enemyY+200);
-            
-           
-
-
-        
+         }
+       if (enemyform == 2)
+         {
+            image(enemy,enemyX,enemyY);
+            image(enemy,enemyX-70,enemyY+50);
+            image(enemy,enemyX-140,enemyY+100);
+            image(enemy,enemyX-210,enemyY+150);
+            image(enemy,enemyX-280,enemyY+200);
+         }  
+                  
             
         // edge = enemyX % 640;
+      if (enemyform == 1)
+        if (enemyX-280 > 640) 
+          {
+          enemyX = 0;
+          enemyY = floor(random(40,220));
+          enemyform = 2;
+          }
+      if (enemyform == 2)
         if (enemyX-280 > 640) 
           {
           enemyX = 0;
           enemyY = floor(random(40,430));
-          }
+          enemyform = 1;
+          }  
+                 
           enemyX += 3;
        
         //range of hit treasure 
